@@ -13,12 +13,13 @@ const Post = ({ user, setMessage }) => {
   const [comment, setComment] = useState("");
 
   const { id } = useParams();
+  const API_BASE_URL = import.meta.env.VITE_API_URL;
 
   const getPostById = async () => {
     const postId = id;
     setLoading(true);
     try {
-      const response = await axios.get(`/api/posts/${postId}`);
+      const response = await axios.get(`${API_BASE_URL}/api/posts/${postId}`);
       setPost(response.data.data);
     } catch (err) {
       console.log(err);
@@ -32,7 +33,7 @@ const Post = ({ user, setMessage }) => {
     const postId = id;
     try {
       console.log("trying to fetch comments");
-      const response = await axios.get(`/api/posts/${postId}/comments`);
+      const response = await axios.get(`${API_BASE_URL}/api/posts/${postId}/comments`);
       setComments(response.data.data);
     } catch (err) {
       console.log("Failed to fetch comments: ", err);
@@ -47,7 +48,7 @@ const Post = ({ user, setMessage }) => {
   const handleCommentSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(`/api/posts/${post.id}`, { comment }, {
+      const response = await axios.post(`${API_BASE_URL}/api/posts/${post.id}`, { comment }, {
         withCredentials: true,
       });
       setMessage(response.data.message);
