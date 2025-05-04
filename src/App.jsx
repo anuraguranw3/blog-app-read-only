@@ -66,7 +66,7 @@ const App = () => {
           "Content-Type": "application/json"
         }
       });
-      navigate("/");
+      // navigate("/");
       getUserInfo();
       setMessage(response.data.message);
       setLoginForm({
