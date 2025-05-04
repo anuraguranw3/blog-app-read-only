@@ -67,7 +67,7 @@ const App = () => {
         }
       });
       // navigate("/");
-      getUserInfo();
+      // getUserInfo();
       setMessage(response.data.message);
       setLoginForm({
         email: "",
